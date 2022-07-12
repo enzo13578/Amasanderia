@@ -1,0 +1,183 @@
+{% load static %} {% load socialaccount %}
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Login jQuery</title>
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-black">
+            <button class="navbar-toggler bg-warning " type="button" data-toggle="collapse" data-target="#opciones">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img class="intermitenteLogo" src="{% static 'home/img/logo4.png' %}" alt="logo">
+            </a>
+
+            <div class="collapse navbar-collapse" id="opciones">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" data-scroll href="{% url 'index' %}">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" data-scroll href="{% url 'contacto' %} ">Contactanos</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link menuItem " href=" {% url 'carrito' %}">Carrito</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link menuItem " href=" {% url 'inicio_sesion' %}">Carrito</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row end-xs">
+        <div class="col-xs-4 col-md-8 col-lg-12">
+            <div class="container-fluid">
+                <form id="form1" runat="server">
+                    <div>
+                        <nav>
+                            <ul>
+                                <li id="login">
+                                    <a id="login-trigger" href="#">Entrar<span>▼</span>
+                                    </a>
+                                    <div id="login-content">
+                                        <div class="campos">
+                                            <label for="validationNombre" class="form-label">Nombre Usuario</label>
+                                            <br>
+                                            <br>
+                                            <input id="nombre-input" type="text">
+                                        </div>
+                                        <div class="campos">
+                                            <label for="validationNombre" class="form-label">Contraseña</label>
+                                            <br>
+                                            <br>
+                                            <input id="contra-input" type="password">
+                                        </div>
+                                        <fieldset id="actions">
+                                            <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="submit">
+                                            </asp:Button>
+                                            <asp:CheckBox ID="chkRemember" runat="server" Checked="true"></asp:CheckBox>
+                                            Recordar cuenta
+                                        </fieldset>
+                                        <input type="button" onclick="verificar()" value="Enviar">
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <section style="padding: 0px 300px;">
+            <form method="POST" action="" id="formulario" style="padding: 50px 600px;">
+                {% csrf_token %}
+                <div class="form-group" style="padding: 0px 0px;">
+                    {{form.as_table}}
+                </div>
+                <input type="submit" class="btn btn-primary" id="enviar" value="Enviar">
+                <br>
+                <br>
+                <input type="reset" class="btn btn-primary" id="limpia" value="Limpiar">
+                <div id="exito" class="alert alert-succes" role="alert">
+                    {{mensaje}}
+                </div>
+            </form>
+        </section>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section style="padding: 0px 700px;">
+        {% if user.is_authenticated %}
+        <p style="border: black 2px solid ; width:400px; height:40px;">BIENVENIDO, has iniciado sesion como {{ user.username }}</p>
+        {% else %}
+        <a href="{% provider_login_url 'google' %}">Iniciar con Google</a>
+        <br>
+        <br>
+        <br>
+        <br> {% endif %}
+    </section>
+
+    <section style="padding: 0px 700px;">
+        {% if request.user.is_authenticated %}
+        <a href="{% provider_login_url 'google' %}">Cerrar sesion</a> {% endif %}
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section>
+        <footer class="text-center">
+            <div class="row center-xs">
+                <div class="col-xs-6">
+                    <div class="box">
+                        <div class="container p-4 pb-0">
+                            <section class="mb-4">
+                                <div class="redes">
+                                    <h4 class="footertxt">Siguenos en nuestras redes!!! </h4>
+                                    <a id="boton1" class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/%22%3E" role="button"><img src=" {% static 'home/img/facelogo.png' %} " width="35px 35px" alt=""> <i class="fab fa-facebook-f"></i></a>
+                                    <a id="boton2" class="btn btn-outline-light btn-floating m-1" href="https://www.twitter.com/%22%3E" role="button"><img src=" {% static 'home/img/twitlogo.png' %} " width="30px 30px" alt=""> <i class="fab fa-twitter"></i></a>
+                                    <a id="boton3" class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/%22%3E" role="button"> <img src=" {% static 'home/img/iglogo.png' %} " width="30px 30px" alt=""> <i class="fab fa-instagram"></i></a>
+                                </div>
+                                <div>
+                                    <span id="direccion" class="fw-bold">Placilla Valparaiso
+                                        Calle reten numero 80
+                                    </span>
+                                    <span id="direccionCorreo"><a href="fr.hernandez@duocuc.cl"></a></span>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{% static 'home/js/main.js' %}"></script>
+</body>
+
+</html>

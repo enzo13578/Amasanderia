@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARRITO</title>
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-black">
+            <button class="navbar-toggler bg-warning " type="button" data-toggle="collapse" data-target="#opciones">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img class="intermitenteLogo" src=" {% static 'home/img/logo4.png' %} " alt="logo">
+            </a>
+
+            <div class="collapse navbar-collapse" id="opciones">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" href=" {% url 'index' %}">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" href="{% url 'contacto' %} ">Contactanos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" href="{% url 'inicio_sesion' %}">Registro</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row end-xs">
+        <div class="col-xs-4 col-md-8 col-lg-12">
+            <div class="container-fluid">
+                <form id="form1" runat="server">
+                    <div>
+                        <nav>
+                            <ul>
+                                <li id="login">
+                                    <a id="login-trigger" href="#">Entrar<span>▼</span>
+                                    </a>
+                                    <div id="login-content">
+                                        <div id="nomemp" class="alert alert-danger ocultar" role="alert">
+                                            <span id="nomemp" class="nombreimg">Empanda de pino horneada</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="row">
+            <div class="col-xs-4 col-md-8 col-lg-12">
+                <div>
+                    <h1>BIENVENIDO A NUESTRO MENU</h1>
+                    <h4>POR FAVOR HAZ CLICK EN EL BOTON AÑADIR AL CARRITO PARA COMPRAR</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <br>
+    <br>
+
+    <section style="padding: 0px 700px;">
+        {% if request.user.is_authenticated %}
+        <table class="tabla" border="1">
+            <tr>
+                <th>Nombre Producto</th>
+                <th>Stock</th>
+            </tr>
+            {% for v in productos%}
+            <tr>
+                <td>{{v.nombreProducto}}</td>
+                <td>{{v.stock}}</td>
+                <td><a class="button2" href="{% url 'modificar_stock' v.nombreProducto %}">Modificar</a></td>
+                <td><a class="button2" href="{% url 'eliminar_producto' v.nombreProducto %}">eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <section style="padding: 0px 150px;">
+        <div class="row center-xs">
+            <div class="col-xs-4 col-md-8 col-lg-12">
+                <div class="container-fluid">
+                    <div class="menus">
+                        <div class="imagenpino">
+                            <img style="border: black 2px solid ; width:250px; height:200px;" src="{% static 'home/img/EMPANADA_PINO.jpg' %}" alt="EMPANADA_PINO">
+                            <div>
+                                <span id="nomemp" class="nombreimg">Empanda de pino horneada</span>
+                                <br>
+                                <br>
+                                <br>
+                                <button onclick="addList()" class="button1" id="a1">Añadir al carrito</button>
+                            </div>
+                        </div>
+                        <div class="imagenqueso">
+                            <img style="border: black 2px solid ; width:250px; height:200px;" src="{% static 'home/img/empanda_queso.jpeg' %}" alt="empanda_queso">
+                            <div>
+                                <span class="nombreimg">empanada de queso frita</span>
+                                <br>
+                                <button class="button2" id="a2">Añadir al carrito</button>
+                            </div>
+
+                        </div>
+
+                        <div class="imagennap">
+                            <img style="border: black 2px solid ; width:250px; height:200px;" src=" {% static 'home/img/empanada_nap.jpg' %}" alt="napolitana">
+                            <div>
+                                <span class="nombreimg">empanada napolitana</span>
+                                <br>
+                                <button class="button3" id="a3">Añadir al carrito</button>
+                            </div>
+                        </div>
+
+                        <div class="imagenmarisco">
+                            <img style="border: black 2px solid ; width:250px; height:200px;" src=" {% static 'home/img/empanadas-de-mariscos.jpg' %} " alt="empanada_mariscos">
+                            <div>
+                                <span class="nombreimg">empanada de mariscos fritas</span>
+                                <br>
+                                <button class="button4" id="a4">Añadir al carrito</button>
+                            </div>
+                        </div>
+
+                        <div class="imagenjamon">
+                            <img style="border: black 2px solid ; width:250px; height:200px;" src="{% static 'home/img/empanada_jamon.jpg' %} " alt="empanada_jamon">
+                            <div>
+                                <span class="nombreimg">empanada de jamon queso</span>
+                                <br>
+                                <button class="button5" id="a5">Añadir al carrito</button>
+                            </div>
+                        </div>
+
+                        <div class="imagenbatido">
+                            <img style="border: black 2px solid ; width:250px; height:200px;" src=" {% static 'home/img/batido.jpg' %}" alt="pan_batido">
+                            <div>
+                                <span class="nombreimg">pan batido</span>
+                                <br>
+                                <button class="button6" id="a6">Añadir al carrito</button>
+
+                            </div>
+                        </div>
+
+                        <div class="imagenbag">
+                            <img style="border: black 2px solid ; width:250px; height:200px;" src="{% static 'home/img/baguette.jpg' %}" alt="pan_baguette">
+                            <div>
+                                <span class="nombreimg">pan baguette</span>
+                                <br>
+                                <br>
+                                <br>
+                                <button class="button1" id="a7">Añadir al carrito</button>
+                            </div>
+                        </div>
+
+                        <div class="imagencro">
+                            <img style="border: black 2px solid ; width:250px; height:200px;" src="{% static 'home/img/croissants.jpg' %}" alt="pan_croissant">
+                            <div>
+                                <span class="nombreimg">pan croissant</span>
+                                <br>
+                                <br>
+                                <br>
+                                <button class="button1" id="a8">Añadir al carrito</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer class="text-center">
+        <div class="row center-xs">
+            <div class="col-xs-6">
+                <div class="box">
+                    <div class="container p-4 pb-0">
+                        <section class="mb-4">
+                            <div class="redes">
+                                <h4 class="footertxt">Siguenos en nuestras redes!!! </h4>
+                                <a id="boton1" class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/%22%3E" role="button"><img src=" {% static 'home/img/facelogo.png' %} " width="35px 35px" alt=""> <i class="fab fa-facebook-f"></i></a>
+                                <a id="boton2" class="btn btn-outline-light btn-floating m-1" href="https://www.twitter.com/%22%3E" role="button"><img src=" {% static 'home/img/twitlogo.png' %} " width="30px 30px" alt=""> <i class="fab fa-twitter"></i></a>
+                                <a id="boton3" class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/%22%3E" role="button"> <img src=" {% static 'home/img/iglogo.png' %} " width="30px 30px" alt=""> <i class="fab fa-instagram"></i></a>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{% static 'home/js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-black">
+            <button class="navbar-toggler bg-warning " type="button" data-toggle="collapse" data-target="#opciones">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.html">
+                <img class="intermitenteLogo" src=" {% static 'home/img/logo4.png' %} " alt="logo">
+            </a>
+
+            <div class="collapse navbar-collapse" id="opciones">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" data-scroll href="#parrafo1">Nostros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" data-scroll href="#carta">Carta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" data-scroll href=" {% url 'contacto' %} ">Contactanos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" href="{% url 'carrito' %}">Carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menuItem" data-scroll href="{% url 'inicio_sesion' %}">Registro</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="contenido">
+        <div class="row-center-xs">
+            <div class="col-xs-4 col-md-8 col-lg-12">
+                <div class="container-fluid">
+                    <br><br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <h1 class="intermitente" id="carta">Nuestra carta</h1>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row" style=" max-width: 400px;">
+                <div class="col-xs-4 col-md-8 col-lg-12">
+                    <div class="container-fluid">
+                        <div class="mx-auto" style="width: 100px; " id="listaP">
+                            <h2 id="panes">Panes</h2>
+                            <div class="intermitente" style="width: 300px;">
+                                <span class="listaP">Baguette</span>
+                                <span class="listaP">Pan de plátano</span>
+                                <span class="listaP"> Multigrano</span>
+                                <span class="listaP"> Barra integral</span>
+                                <span class="listaP"> Pan de sal</span>
+                                <span class="listaP"> Pan de Queso</span>
+                                <span class="listaP">Croissant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row" style=" max-width: 400px;">
+                <div class="col-xs-4 col-md-8 col-lg-12">
+                    <div class="container-fluid">
+                        <div class="mx-auto" style="width: 200px;" id="listaE">
+                            <h2 id="empanadas">Empanadas</h2>
+                            <div class="intermitente" style="width: 300px; height: 250px;">
+                                <span class="listaM">Empanada de pino</span>
+                                <span class="listaM">Empanada de queso</span>
+                                <span class="listaM">Empanada de pollo</span>
+                                <span class="listaM">Empanada de napoliana</span>
+                                <span class="listaM">Empanada de jamon y queso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-center-xs">
+            <div class="col-xs-4 col-md-8 col-lg-12">
+                <div class="container-fluid">
+                    <div class="position-relative" id="imagenesP">
+                        <div class="position-absolute top-0 start-50 translate-middle">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src=" {% static 'home/img/empanada1.jpg' %} " class="rounded mx-auto d-block" alt="..." style="border: black 2px solid ;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src=" {% static 'home/img/empanada2.jpg' %} " class="rounded mx-auto d-block" alt="..." style="border: black 2px solid ;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src=" {% static 'home/img/empanada3.jpg' %} " class="rounded mx-auto d-block" alt="..." style="border: black 2px solid ;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        <br>
+        <br>
+        <br>
+        <h1>NOSOTROS</h1>
+        <div class="row">
+            <div class="col-xs-4 col-md-8 col-lg-12">
+                <div class="intermitente">
+                    <p class="fw-normal" id="parrafo1" class="fs-3">En este negocio nos dedicamos a hacer todo tipo de empanadas caseras desde nuestro establecimiento.Se puede realizar pedidos, los pedidos pueden hacerse para una fecha especifica o para una fecha inmediata ya que contamos con servicios
+                        delivery, pueden ver nuestra variedad de empandas desde el menu, ahi encontraran cada detalle de nuestras empanadas, desde como las hacemos,los ingredientes que usamos y el precio. También encontraran grandes promociones y descuentos
+                        dependiendo de la cantidad del pedido, el tipo de empanada o fecha del pedido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br><br>
+    <section>
+        <footer class="text-center">
+            <div class="row center-xs">
+                <div class="col-xs-6">
+                    <div class="box">
+                        <div class="container p-4 pb-0">
+                            <section class="mb-4">
+                                <div class="redes">
+                                    <h4 class="footertxt">Siguenos en nuestras redes!!! </h4>
+                                    <a id="boton1" class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/%22%3E" role="button"><img src=" {% static 'home/img/facelogo.png' %} " width="35px 35px" alt=""> <i class="fab fa-facebook-f"></i></a>
+                                    <a id="boton2" class="btn btn-outline-light btn-floating m-1" href="https://www.twitter.com/%22%3E" role="button"><img src=" {% static 'home/img/twitlogo.png' %} " width="30px 30px" alt=""> <i class="fab fa-twitter"></i></a>
+                                    <a id="boton3" class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/%22%3E" role="button"> <img src=" {% static 'home/img/iglogo.png' %} " width="30px 30px" alt=""> <i class="fab fa-instagram"></i></a>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]', {
+            speed: 10
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
+</body>
+
+</html>
